@@ -21,3 +21,17 @@ Queries are the methods that Testing Library gives you to find elements on the p
 There are several types of queries ("get", "find", "query") 
 the difference between them is whether the query will throw an error if no element is found or if it will return a Promise and retry.
 Depending on what page content you are selecting, different queries may be more or less appropriate
+
+Precision: Queries that take a TextMatch also accept an object as the final argument that can contain options that affect the precision of string matching:
+    exact: Defaults to true; matches full strings, case-sensitive. When false, matches substrings and is not case-sensitive.
+        exact has no effect on regex or function arguments.
+        In most cases using a regex instead of a string gives you more control over fuzzy matching and should be preferred over { exact: false }.
+    normalizer: An optional function which overrides normalization behavior. See Normalization.
+
+
+As stated by the React Testing Library docs, ByRole methods are the favored methods for querying, especially when paired with the name option. 
+For example, we could improve the specificity of the above query like so: getByRole("heading", { name: "Our First Test" }). Queries that are done through ByRole ensure that our UI is accessible to everyone no matter what mode they use to navigate the webpage (i.e mouse or assistive technologies.
+
+
+Simulating User Events
+There are numerous ways a user can interact with a webpage. Even though live user feedback and interaction is irreplaceable, we can still build some confidence in our components through tests. Here’s a button which changes the heading of the App

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<a
+  className="normal"
+  href="http://www.facebook.com"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  Facebook
+</a>
+`;
+
+exports[`renders correctly 2`] = `
+<a
+  className="normal"
+  href="http://www.instagram.com"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  Instagram
+</a>
+`;
+
+exports[`will check the matchers and pass 1`] = `
+Object {
+  "createdAt": Any<Date>,
+  "id": Any<Number>,
+  "name": "LeBron James",
+}
+`;
+
+exports[`will check the values and pass 1`] = `
+Object {
+  "createdAt": Any<Date>,
+  "name": "Bond... James Bond",
+}
+`;
+
+exports[`will fail every time 1`] = `
+Object {
+  "createdAt": 2022-03-15T18:50:03.990Z,
+  "id": 1,
+  "name": "LeBron James",
+}
+`;

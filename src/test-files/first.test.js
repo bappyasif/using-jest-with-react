@@ -2,12 +2,14 @@ import React from "react";
 import { render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import App from "../App";
+import TestableComponent from "../components/testable-comp";
 
 
 describe('App component', () => {
     it('renders correct compoennt header', () => {
         // let {getByRole} = render(<App />)
-        render(<App />)
+        // render(<App />)
+        render(<TestableComponent />)
         expect(screen.getByRole('heading').textContent).toMatch(/Our First Test/i);
     })
 })

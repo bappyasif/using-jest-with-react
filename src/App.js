@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import TestableComponent from './components/testable-comp';
+import SampleForm from './components/from-docs/sample-form';
+import TestableButton from './components/testable-button';
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
         Testing with Jest using React environment
       </header>
       <TestableComponent />
+      <SampleForm />
+      <TestableButton />
     </div>
   );
 }
