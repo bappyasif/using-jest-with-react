@@ -6,11 +6,12 @@ function UsersComponent({fetchUsersList}) {
     <div>
         {/* UsersComponent
         {id} */}
+        {/* <div id='h1'>aa</div> */}
         <h1>aa</h1>
         <ul>
             <li>bb</li>
         </ul>
-        <button></button>
+        <button>add new user</button>
     </div>
   )
 }
