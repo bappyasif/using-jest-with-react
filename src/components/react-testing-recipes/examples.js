@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import MapComponent from "./map-comp";
 
 export let HelloComp = ({ name }) => {
     if (name) {
@@ -60,7 +61,49 @@ export let ContactComp = (props) => {
                     website
                 </a>.
             </address>
-            <Map center={props.center} />
+            <MapComponent center={props.center} />
         </div>
     );
+}
+
+// Events
+export let ToggleComp = (props) => {
+    const [state, setState] = useState(false);
+    return (
+        <button
+            onClick={() => {
+                setState(previousState => !previousState);
+                props.onChange(!state);
+            }}
+            data-testid="toggle"
+        >
+            {state === true ? "Turn off" : "Turn on"}
+        </button>
+    );
+}
+
+// Timers
+// Your code might use timer-based functions like setTimeout to schedule more work in the future. 
+// In this example, a multiple choice panel waits for a selection and advances, timing out if a selection isn’t made in 5 seconds:
+export let CardComp = (props) => {
+    useEffect(() => {
+        const timeoutID = setTimeout(() => {
+            props.onSelect(null);
+            // props.onSelect('done');
+        }, 5000);
+        console.log('here here!!')
+        return () => {
+            clearTimeout(timeoutID);
+        };
+    }, [props.onSelect]);
+
+    return [1, 2, 3, 4].map(choice => (
+        <button
+            key={choice}
+            data-testid={choice}
+            onClick={() => props.onSelect(choice)}
+        >
+            {choice}
+        </button>
+    ));
 }
