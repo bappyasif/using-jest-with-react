@@ -75,20 +75,17 @@ describe('using promise for fetch', () => {
     test('should display fetched data', async () => {
         // a rather simple mock, you might use something more advanced for your needs
         let resolve;
-        let fetch = () => new Promise(_resolve => resolve = _resolve)
-        // let fetch = (value) => new Promise(_resolve => resolve = value)
+        fetch = jest.fn(() => new Promise(_resolve => resolve = _resolve))
+    
         let el = document.createElement('div')
+        
         act(() => ReactDOM.render(<DemoFetch />, el))
         expect(el.innerHTML).toBe("");
-        // resolve(42);
-        // fetch(42)
-        // expect(el.innerHTML).toBe("42");
 
-        // await act(async () => {
-        //     resolve(42);
-        //     // fetch(42)
-        // });
-        // expect(el.innerHTML).toBe("42");
+        await act(async () => {
+            resolve(42);
+        });
+        expect(el.innerHTML).toBe("42");
     })
 })
 
@@ -96,14 +93,45 @@ describe('using promise for fetch', () => {
 describe('fetching data with async', () => {
     it('same test as before', async () => {
         let resolve;
-        let fetch = () => new Promise(_resolve => resolve = _resolve)
+        fetch = () => new Promise(_resolve => resolve = _resolve)
         // let fetch = (value) => new Promise(_resolve => resolve = value)
         let el = document.createElement('div')
         act(() => ReactDOM.render(<DemoFetch />, el))
         expect(el.innerHTML).toBe("");
         await act(async () => {
-            // resolve(42);
+            resolve(42);
         });
-        // expect(el.innerHTML).toBe("42");
+        expect(el.innerHTML).toBe("42");
     })
 })
+
+/**
+ * 
+ * 
+ describe('using promise for fetch', () => {
+    test('should display fetched data', async () => {
+        // a rather simple mock, you might use something more advanced for your needs
+        let resolve;
+        // let fetch = () => new Promise(_resolve => resolve = _resolve) // this would have worked if component was already included in test file, which is highly unlikely most of use cases
+
+        // fetch = jest.fn(() => new Promise(_resolve => resolve = _resolve))
+        // let fetch = (value) => new Promise(_resolve => resolve = value)
+        fetch = jest.fn(() => new Promise(_resolve => resolve = _resolve))
+        
+        let el = document.createElement('div')
+        act(() => ReactDOM.render(<DemoFetch />, el))
+        expect(el.innerHTML).toBe("");
+        // resolve(42);
+        // fetch(42)
+        // expect(el.innerHTML).toBe("42");
+
+        await act(async () => {
+
+            // Promise.resolve(42);
+            resolve(42);
+            // fetch(42)
+        });
+        expect(el.innerHTML).toBe("42");
+    })
+})
+ */

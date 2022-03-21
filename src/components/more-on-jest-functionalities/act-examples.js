@@ -26,6 +26,10 @@ export let DemoFetch = () => {
     let [data, setData] = useState(null);
     useEffect(() => {
         fetch("/some/url").then(setData);
+        // window.fetch = jest.fn((_resolve) => Promise.resolve(_resolve))
+
+        // window.fetch().then(val=>setData(val))
+
     }, []);
     return data;
 }
